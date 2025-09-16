@@ -6,11 +6,13 @@ angka2 = 0
 hasil = 0
 sisa = ""
 ada_anomali = False
-lanjut = "Y"
+lanjut = True
+konfirmasi = "Y"
 # Selama belum diberhentikan, program akan terus berjalan
-while lanjut == "Y":
+while lanjut:
+    ada_anomali = False
     # Menu utama
-    pilihan = int(input("""
+    pilihan = str(input("""
 1. Penjumlahan
 2. Pengurangan
 3. Perkalian
@@ -20,64 +22,87 @@ while lanjut == "Y":
 7. Modulo
 Silahkan pilih operasi yang akan dijalankan (Angka saja): """))
     # Pilihan penjumlahan
-    if pilihan == 1:
+    if pilihan == "1":
         sifat_angka1 = "dijumlahkan"
         sifat_angka2 = "penjumlah"
     # Pilihan penguranagan
-    elif pilihan == 2:
+    elif pilihan == "2":
         sifat_angka1 = "dikurangkan"
         sifat_angka2 = "pengurang"
     # Pilihan perkalian
-    elif pilihan == 3:
+    elif pilihan == "3":
         sifat_angka1 = "dikali"
         sifat_angka2 = "pengali"
     # Pilihan pembagian
-    elif pilihan == 4:
+    elif pilihan == "4":
         sifat_angka1 = "dibagi"
         sifat_angka2 = "pembagi"
     # Pilihan perpangkatan
-    elif pilihan == 5:
+    elif pilihan == "5":
         sifat_angka1 = "dipangkatkan"
         sifat_angka2 = "pangkat"
     # Pilihan pengakaran
-    elif pilihan == 6:
+    elif pilihan == "6":
         sifat_angka1 = "diakarkan"
         sifat_angka2 = "pangkat akar"
     # Pilihan modulo
-    elif pilihan == 7:
+    elif pilihan == "7":
         sifat_angka1 = "dibagi"
         sifat_angka2 = "pembagi"
         sisa = "sisa"
     # Tidak ada pilihan
     else:
-        print("Operasi tidak ada")
+        ada_anomali = True
+    # Jika ada anomali maka ini di skip
     if not ada_anomali:
+        # Meminta input user
         if simpan_angka:
             print(f"Angka yang akan {sifat_angka1} adalah {angka1}")
         else:
             angka1 = float(input(f"Masukan angka yang ingin {sifat_angka1}: "))
-        angka2 = float(input(f"Masukan angka yang akan menjadi {sifat_angka2}: "))
-        if pilihan == 1:
+        angka2 = float(
+            input(f"Masukan angka yang akan menjadi {sifat_angka2}: "))
+        # Pemilihan perhitungan
+        if pilihan == "1":
             hasil = angka1 + angka2
-        elif pilihan == 2:
+        elif pilihan == "2":
             hasil = angka1 - angka2
-        elif pilihan == 3:
+        elif pilihan == "3":
             hasil = angka1 * angka2
-        elif pilihan == 4:
+        elif pilihan == "4":
             hasil = angka1 / angka2
-        elif pilihan == 5:
+        elif pilihan == "5":
             hasil = angka1 ** angka2
-        elif pilihan == 6:
+        elif pilihan == "6":
             hasil = pow(angka1, 1/angka2)
-        elif pilihan == 7:
+        elif pilihan == "7":
             hasil = angka1 % angka2
-        lanjut = input(f"Hasil {sisa} dari {angka1} {sifat_angka1} {angka2} adalah {hasil:.3f} \nApakah anda ingin melanjutkan operasi? (Y/N): ")
+        # Pembentukan kata untuk menampilkan hasil dan menanyakan apakah user ingin melanjutkan perhitungan
+        konfirmasi = input(
+            f"Hasil {sisa} dari {angka1} {sifat_angka1} {angka2} adalah {hasil:.3f} \nApakah anda ingin melanjutkan operasi? (Y/N): ")
         sisa = ""
-        if lanjut == "Y":
+        # Jika iya hasil akan menjadi angka pertama
+        if konfirmasi == "Y":
             simpan_angka = True
             angka1 = hasil
+        # Jika tidak akan menanyakan apakah user ingin menggunakan kalkulator lagi
+        elif konfirmasi == "N":
+            simpan_angka = False
+            konfirmasi = input(
+                f"Apakah anda ingin menggunakan kalkulator lagi? (Y/N): ")
+            if konfirmasi == "Y":
+                next
+            elif konfirmasi == "N":
+                print("Kalulator selesai")
+                lanjut = False
+            else:
+                simpan_angka = False
+                ada_anomali = True
+                print("Operasi tidak ada")
         else:
             simpan_angka = False
-            lanjut = input(f"Apakah anda ingin menggunakan kalkulator lagi? (Y/N): ")
-            if lanjut != "Y":
-                print("Kalulator selesai")
+            ada_anomali = True
+            print("Operasi tidak ada")
+    else:
+        ada_anomali = False
+        print("Operasi tidak ada")
