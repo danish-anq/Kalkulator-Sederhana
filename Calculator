@@ -1,0 +1,129 @@
+
+# Konidisi awal
+pilihan = 1
+simpan_angka = False
+angka1 = 0
+angka2 = 0
+hasil = 0
+sisa = ""
+ada_anomali = False
+lanjut = "Y"
+# Selama belum diberhentikan, program akan terus berjalan
+while lanjut == "Y":
+    # Menu utama
+    pilihan = int(input("""
+1. Penjumlahan
+2. Pengurangan
+3. Perkalian
+4. Pembagian
+5. Perpangkatan
+6. Pengakaran
+7. Modulo
+Silahkan pilih operasi yang akan dijalankan (Angka saja): """))
+    # Pilihan penjumlahan
+    if pilihan == 1:
+        sifat_angka1 = "dijumlahkan"
+        sifat_angka2 = "penjumlah"
+    # Pilihan penguranagan
+    elif pilihan == 2:
+        sifat_angka1 = "dikurangkan"
+        sifat_angka2 = "pengurang"
+    # Pilihan perkalian
+    elif pilihan == 3:
+        sifat_angka1 = "dikali"
+        sifat_angka2 = "pengali"
+    # Pilihan pembagian
+    elif pilihan == 4:
+        sifat_angka1 = "dibagi"
+        sifat_angka2 = "pembagi"
+    # Pilihan perpangkatan
+    elif pilihan == 5:
+        sifat_angka1 = "dipangkatkan"
+        sifat_angka2 = "pangkat"
+    # Pilihan pengakaran
+    elif pilihan == 6:
+        sifat_angka1 = "diakarkan"
+        sifat_angka2 = "pangkat akar"
+    # Pilihan modulo
+    elif pilihan == 7:
+        sifat_angka1 = "dibagi"
+        sifat_angka2 = "pembagi"
+        sisa = "sisa"
+    # Tidak ada pilihan
+    else:
+        print("Operasi tidak ada")
+    if not ada_anomali:
+        if simpan_angka:
+            print(f"Angka yang akan {sifat_angka1} adalah {angka1}")
+        else:
+            angka1 = float(input(f"Masukan angka yang ingin {sifat_angka1}: "))
+        angka2 = float(input(f"Masukan angka yang akan menjadi {sifat_angka2}: "))
+        if pilihan == 1:
+            hasil = angka1 + angka2
+        elif pilihan == 2:
+            hasil = angka1 - angka2
+        elif pilihan == 3:
+            hasil = angka1 * angka2
+        elif pilihan == 4:
+            hasil = angka1 / angka2
+        elif pilihan == 5:
+            hasil = angka1 ** angka2
+        elif pilihan == 6:
+            hasil = pow(angka1, 1/angka2)
+        elif pilihan == 7:
+            hasil = angka1 % angka2
+        lanjut = input(f"Hasil {sisa} dari {angka1} {sifat_angka1} {angka2} adalah {hasil:.3f} \nApakah anda ingin melanjutkan operasi? (Y/N): ")
+        sisa = ""
+        if lanjut == "Y":
+            simpan_angka = True
+            angka1 = hasil
+        else:
+            simpan_angka = False
+            lanjut = input(f"Apakah anda ingin menggunakan kalkulator lagi? (Y/N): ")
+            if lanjut != "Y":
+                print("Kalulator selesai")
+
+
+
+
+
+# Ide awal
+    """# Pilihan penjumlahan
+    if pilihan == 1:
+        if simpan_angka:
+            print(f"Angka pertama yang akan dijumlahkan adalah {angka1}")
+        else:
+            angka1 = float(input("Masukan angka yang ingin dijumlah: "))
+        angka2 = float(input("Masukan angka yang akan menjadi penjumlah: "))
+        hasil = angka1 + angka2
+    # Pilihan penguranagan
+    elif pilihan == 2:
+        if simpan_angka:
+            print(f"Angka yang akan dikurangkan adalah {angka1}")
+        else:
+            angka1 = float(input("Masukan angka yang ingin dikurang: "))
+        angka2 = float(input("Masukan angka  yang akan menjadi pengurang: "))
+        hasil = angka1 - angka2
+    # Pilihan perkalian
+    elif pilihan == 3:
+        if simpan_angka:
+            print(f"Angka yang akan dikali adalah {angka1}")
+        else:
+            angka1 = float(input("Masukan angka yang ingin dikali: "))
+        angka2 = float(input("Masukan angka  yang akan menjadi pengali: "))
+        hasil = angka1 * angka2
+    # Pilihan pembagian
+    elif pilihan == 4:
+        if simpan_angka:
+            print(f"Angka yang akan dibagi adalah {angka1}")
+        else:
+            angka1 = float(input("Masukan angka yang ingin dibagi: "))
+        angka2 = float(input("Masukan angka  yang akan menjadi pembagi: "))
+        hasil = angka1 / angka2
+    else:
+        print("Operasi tidak ada")
+        break
+    lanjut = input(f"Hasil operasi {angka1} dan {angka2} adalah {hasil:.4f} \nApakah anda ingin melanjutkan operasi? (Y/N): ")
+    if lanjut == "Y":
+        simpan_angka = True
+        angka1 = hasil"""
