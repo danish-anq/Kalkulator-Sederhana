@@ -1,4 +1,3 @@
-
 # Konidisi awal
 pilihan = 1
 simpan_angka = False
@@ -126,4 +125,5 @@ Silahkan pilih operasi yang akan dijalankan (Angka saja): """))
     lanjut = input(f"Hasil operasi {angka1} dan {angka2} adalah {hasil:.4f} \nApakah anda ingin melanjutkan operasi? (Y/N): ")
     if lanjut == "Y":
         simpan_angka = True
+
         angka1 = hasil"""
